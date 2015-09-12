@@ -1,7 +1,7 @@
 # Fibanocci Sequence
 
 ## Description
-**Deck of Cards** Exploring the Fibanocci sequence with BDD and Ruby.
+Exploring the Fibanocci sequence with BDD and Ruby.
 
 ## Usage
 
@@ -9,6 +9,7 @@
 
 import `fib.rb`
 fibonacci(n) => returns a fibonacci number n levels deep
+fib_for(time_in_seconds) => runs the sequence for a given number of seconds
 
 OR, clone the repo, switch into "lib" directory, `ruby fib.rb` to execute the sequence for 10 seconds.
 

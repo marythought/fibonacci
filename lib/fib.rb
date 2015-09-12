@@ -1,32 +1,19 @@
-require 'timeout'
-
 def fibonacci(n)
   n = n.floor
   fail(ArgumentError, "number can't be negative") if n < 0
-  if n == 0
-    return 0
-  elsif n == 1
-    return 1
-  else
-    return (fibonacci(n - 1)) + (fibonacci(n - 2))
+  n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2)
+end
+
+def fib_for(seconds)
+  beginning_time = current_time = Time.now
+  n = 0
+  # run continuously in increasing increments of i for x seconds
+  while current_time - beginning_time < seconds
+    puts fibonacci(n)
+    n += 1
+    current_time = Time.now
   end
 end
 
-def fib_for_10_seconds
-  1000.times do | i |
-    puts "fibonacci number #{i}:"
-    puts fibonacci(i)
-  end
-end
-
-@running = true
-
-while @running
-  begin
-    Timeout::timeout(10) { fib_for_10_seconds }
-  rescue Timeout::Error
-    @running = false
-  end
-end
-
-
+# test it works
+# fib_for(10)
