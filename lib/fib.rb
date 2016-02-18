@@ -1,19 +1,52 @@
+# O(n) time and O(n) space
 def fibonacci(n)
-  n = n.floor
-  fail(ArgumentError, "number can't be negative") if n < 0
-  n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2)
-end
-
-def fib_for(seconds)
-  beginning_time = current_time = Time.now
-  n = 0
-  # run continuously in increasing increments of i for x seconds
-  while current_time - beginning_time < seconds
-    puts fibonacci(n)
-    n += 1
-    current_time = Time.now
+  return 0 if n == 0
+  return 1 if n == 1 || n == 2
+  sequence = [0, 1, 1]
+  loop do
+    sequence << (sequence[-1] + sequence[-2])
+    break if sequence.length > n
   end
+  sequence[-1]
 end
 
-# test it works
-# fib_for(10)
+# same O(n) time but O(1) space
+def fibonacci2(n)
+  return 0 if n == 0
+  return 1 if n == 1 || n == 2
+  last = 0
+  lastlast = 1
+  current = 0
+  n.times do
+    current = last + lastlast
+    lastlast = last
+    last = current
+  end
+  current
+end
+
+# accepts a negative numberdef fib(n)
+def fibonacci3
+  return 0 if n == 0
+  return 1 if n == 1 || n == 2 || n == -1
+  sequence = [0, 1, 1]
+  loop do
+    sequence << (sequence[-1] + sequence[-2])
+    break if sequence.length > n.abs
+  end
+  n > 0 ? sequence[-1] : n.even? ? -(sequence[-1]) : sequence[-1]
+end
+
+def fib(n)
+  return 0 if n == 0
+  return 1 if n == 1 || n == 2 || n == -1
+  last = 0
+  lastlast = 1
+  current = 0
+  n.abs.times do
+    current = last + lastlast
+    lastlast = last
+    last = current
+  end
+  n > 0 ? current : n.even? ? -current : current
+end

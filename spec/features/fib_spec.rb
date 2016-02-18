@@ -3,19 +3,20 @@ require "fib.rb"
 
 describe 'fibonacci' do
   it "returns a valid result" do
-    assert_equal fibonacci(0), 0
-    assert_equal fibonacci(1), 1
-    assert_equal fibonacci(20), 6765
+    assert_equal 0, fibonacci(0)
+    assert_equal 1, fibonacci(1)
+    assert_equal 1, fibonacci(2)
+    assert_equal 2, fibonacci(3)
+    assert_equal 3, fibonacci(4)
+    assert_equal 5, fibonacci(5)
   end
 
-  it "returns an error with a negative number" do
-    proc { fibonacci(-1) }.must_raise ArgumentError
-  end
-
-  it "rounds to the nearest integer given a float" do
-    assert_equal fibonacci(3.14), 2
-    assert_equal fibonacci(0.75), 0
+  it "returns a valid result" do
+    assert_equal 0, fibonacci2(0)
+    assert_equal 1, fibonacci2(1)
+    assert_equal 1, fibonacci2(2)
+    assert_equal 2, fibonacci2(3)
+    assert_equal 3, fibonacci2(4)
+    assert_equal 5, fibonacci2(5)
   end
 end
-
-
