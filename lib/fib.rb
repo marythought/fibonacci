@@ -25,7 +25,7 @@ def fibonacci2(n)
   current
 end
 
-# accepts a negative numberdef fib(n)
+# accepts a negative number
 def fibonacci3
   return 0 if n == 0
   return 1 if n == 1 || n == 2 || n == -1
@@ -37,16 +37,25 @@ def fibonacci3
   n > 0 ? sequence[-1] : n.even? ? -(sequence[-1]) : sequence[-1]
 end
 
-def fib(n)
-  return 0 if n == 0
-  return 1 if n == 1 || n == 2 || n == -1
-  last = 0
-  lastlast = 1
-  current = 0
-  n.abs.times do
-    current = last + lastlast
-    lastlast = last
-    last = current
+# fib with log(n) complexity adapted from pseudocode from http://stackoverflow.com/a/1526036/5100791
+def fib_log_n(count)
+  n = count.abs
+  a = 1
+  b = 0
+  p = 0
+  q = 1
+  while n > 0
+    if n.even?
+      oldp = p
+      p = (p * p) + (q * q)
+      q = (2 * oldp * q) + (q * q)
+      n /= 2
+    else
+      olda = a
+      a = (b * q) + (a * q) + (a * p)
+      b = (b * p) + (olda * q)
+      n -= 1
+    end
   end
-  n > 0 ? current : n.even? ? -current : current
+  count > 0 ? b : count.even? ? -b : b
 end
